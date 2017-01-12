@@ -1,0 +1,1 @@
+include ':app', ':tools-bsdiff', ':tools-ftf', ':lib-bsdiff', ':lib-core'
