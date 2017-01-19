@@ -16,6 +16,8 @@ public class App extends Application {
     public void onCreate() {
         super.onCreate();
         //checkKillState();
+
+        registerActivityLifecycleCallbacks(callbacks);
     }
 
     private void checkKillState() {
@@ -31,6 +33,7 @@ public class App extends Application {
 
 
     private Activity currentActivity;
+    private Activity beforeActivity;
     private ActivityLifecycleCallbacks callbacks = new ActivityLifecycleCallbacks() {
         @Override
         public void onActivityCreated(Activity activity, Bundle savedInstanceState) {
@@ -39,22 +42,22 @@ public class App extends Application {
 
         @Override
         public void onActivityStarted(Activity activity) {
-
-        }
-
-        @Override
-        public void onActivityResumed(Activity activity) {
             currentActivity = activity;
         }
 
         @Override
+        public void onActivityResumed(Activity activity) {
+
+        }
+
+        @Override
         public void onActivityPaused(Activity activity) {
-            currentActivity = null;
+
         }
 
         @Override
         public void onActivityStopped(Activity activity) {
-
+            beforeActivity = activity;
         }
 
         @Override
